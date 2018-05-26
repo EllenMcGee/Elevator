@@ -1,55 +1,39 @@
 import User
 import Elevator
-import Math
-
-final Integer TRAVEL_TIME_PER_FLOOR = 1
-final Integer STOP_TIME_PER_FLOOR = 1
-
-
-Integer distance
-Integer time
 
 User user = new User()
 user.currentFloor = 6
 user.desiredFloor = 4
+
 if (user.currentFloor < user.desiredFloor) {
     user.desiredDirection = true //up
 } else {
     user.desiredDirection = false //down
 }
+
 int numOfStops = 2
 Elevator elevator = new Elevator(numOfStops)
 elevator.currentDirection = false
 elevator.currentFloor = 4
 elevator.stop = [3,1]
 
-//Distance to get to user
-if (numOfStops == 0) {
-    distance = (elevator.currentFloor - user.currentFloor).abs()
-    println("Distance: ${distance} opposite or zero")
+println("${getElevatorTime(user, elevator, numOfStops).trunc(2)}")
+
+Double getElevatorTime(User user, Elevator elevator, Integer numOfStops) {
+    Double distanceBeforePickup
+    Double time
+
+    if (numOfStops == 0) {
+        distanceBeforePickup = (elevator.currentFloor - user.currentFloor).abs()
+    } else {
+        def highest = getFurthestFloor(user, elevator)
+        distanceBeforePickup = 2 * (highest - elevator.currentFloor).abs() + (elevator.currentFloor - user.currentFloor).abs()
+    }
+    Double distanceAfterPickup = ((user.desiredFloor - user.currentFloor).abs())
+    time = (distanceBeforePickup * elevator.TRAVEL_TIME_PER_FLOOR) + (numOfStops * elevator.STOP_TIME_PER_FLOOR) + (distanceAfterPickup * elevator.TRAVEL_TIME_PER_FLOOR) + (elevator.STOP_TIME_PER_FLOOR/2)
 }
-//else if (elevator.currentDirection != user.desiredDirection && numOfStops != 0) {
-//    distance = (elevator.currentFloor - user.currentFloor).abs()
-//    println("Distance: ${distance} opposite or zero")}
-else {
-    def highest = getThing(user, elevator)
-    distance = 2 * (highest - elevator.currentFloor).abs() + (elevator.currentFloor - user.currentFloor).abs()
-    println("Distance: ${distance} same and maybe stop")
-}
-time = (distance * TRAVEL_TIME_PER_FLOOR) + (numOfStops * STOP_TIME_PER_FLOOR)
-println("Time: ${time}")
 
-//DISTANCE TO FLOOR
-Integer distance2 = ((user.desiredFloor - user.currentFloor).abs())
-println(Distance2: "${distance2}")
-Integer time2 = (distance2*TRAVEL_TIME_PER_FLOOR) + STOP_TIME_PER_FLOOR
-
-Integer totaltime = time + time2
-println(totaltime)
-
-
-
-Integer getThing(User user, Elevator elevator) {
+Integer getFurthestFloor(User user, Elevator elevator) {
      def a = elevator.stop[0]
      for (int i = 0; i < elevator.stop.size(); i++) {
          if (elevator.currentDirection == true && elevator.stop[i] > a)
@@ -59,3 +43,4 @@ Integer getThing(User user, Elevator elevator) {
      }
     return a
  }
+
