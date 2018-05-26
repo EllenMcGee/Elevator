@@ -18,10 +18,11 @@ class MyModel {
 def model = new MyModel()
 new SwingBuilder().edt {
     frame(title: 'Java Frame', size: [800, 600], locationRelativeTo: null, show: true) {
-        gridLayout(cols: 3, rows: 2)
+
         //model.user.desiredFloor = model.floor
         Calculations calculations = new Calculations(model.user, model.elevator)
-        label(text: bind(source: model, sourceProperty: 'floor', converter: { v ->  v? "Time to  $v floor: ${calculations.getElevatorTime(model.numOfStops)}": ''}))
+        label(text: bind(source: model, sourceProperty: 'floor', converter: { v ->  v? "Time to  $v floor: ${calculations.getElevatorTime(model.numOfStops, model.floor)}": ''}))
+        gridLayout(cols: 3, rows: 2)
         button('Floor 1', actionPerformed: { model.floor = 1 })
         button('Floor 2', actionPerformed: { model.floor = 2 })
         button('Floor 3', actionPerformed: { model.floor = 3})
@@ -33,4 +34,6 @@ new SwingBuilder().edt {
 
 
 }
+
+
 

@@ -21,7 +21,7 @@ class Calculations {
             def highest = getFurthestFloor()
             distanceBeforePickup = 2 * (highest - elevator.currentFloor).abs() + (elevator.currentFloor - user.currentFloor).abs()
         }
-        Double distanceAfterPickup = ((user.desiredFloor - user.currentFloor).abs())
+        Double distanceAfterPickup = ((desiredFloor - user.currentFloor).abs())
         time = (distanceBeforePickup * elevator.TRAVEL_TIME_PER_FLOOR) + (numOfStops * elevator.STOP_TIME_PER_FLOOR) + (distanceAfterPickup * elevator.TRAVEL_TIME_PER_FLOOR) + (elevator.STOP_TIME_PER_FLOOR/2)
     }
 
