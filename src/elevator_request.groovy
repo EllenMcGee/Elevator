@@ -3,10 +3,10 @@ import Elevator
 import Calculations
 import groovy.json.JsonOutput
 
-//User user = new User(6,4)
-int numOfStops = 2
-Elevator elevator = new Elevator(numOfStops,false,4,[3,1])
-//Calculations calculations = new Calculations(user, elevator)
+
+
+Integer numOfStops = 1
+Elevator elevator = new Elevator(numOfStops,false,3,[2])
 
 @Grab( group = 'com.sparkjava', module = 'spark-core', version = '2.1' )
 import static spark.Spark.*
@@ -22,10 +22,12 @@ get '/hello', 'application/json', { req, res ->
 
     desiredFloor = req.queryParams("floorNum")
     println("${desiredFloor}")
-    User user = new User(6, desiredFloor.toInteger())
+    User user = new User(1, desiredFloor.toInteger())
     Calculations calculations = new Calculations(user, elevator)
     Double elevatorTime = calculations.getElevatorTime(numOfStops, desiredFloor.toInteger())
-    def output = JsonOutput.toJson([time: elevatorTime])
+    Double stairTime = calculations.getStairTime(desiredFloor.toInteger())
+    String fastestRoute = calculations.fastestRoute(numOfStops, desiredFloor.toInteger())
+    def output = "Stair time: ${stairTime.round()}sec  |   Elevator Time: ${elevatorTime.round()}sec"//JsonOutput.toJson([eleTime: elevatorTime, stairTime: stairTime, fastestRoute: fastestRoute ])
     output
    // '{"hi": \${elevatorTime}}'
 }

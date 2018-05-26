@@ -1,6 +1,11 @@
 var arr = [1,2,3,4,5,6];
 
 $(document).ready(function(){
+
+$('.Button').click(function() {
+    $(this).toggleClass("active");
+});
+
 	//$("#move").animate({left: '+=100px'}, "slow");
 $.each(arr, function(i, val){
 	$("#floor" + val).click(function(){

@@ -1,6 +1,11 @@
 var arr = [1,2,3,4,5,6];
 
 $(document).ready(function(){
+
+$('.Button').click(function() {
+    $(this).toggleClass("active");
+});
+
 	//$("#move").animate({left: '+=100px'}, "slow");
 $.each(arr, function(i, val){
 	$("#floor" + val).click(function(){
@@ -24,7 +29,7 @@ $.each(arr, function(i, val){
 		});
 
             console.log("hi")
-			$.get( "http://0.0.0.0:4567/hello?floorNum=3", function( data ) {
+			$.get( "http://0.0.0.0:4567/hello?floorNum=" + val, function( data ) {
 //  		$( ".result" ).html( data );
 console.log(data)
 	$("#time").html(data);

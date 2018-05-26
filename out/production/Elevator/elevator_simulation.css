@@ -5,10 +5,11 @@
 }
 
 div.main {
-	border-style: solid;
-	border-width: 1px;
-	height: 200px;
-	width: 300px;
+	border-style: none;
+	border-width: none;
+	height: 680px;
+	width: 1300px;
+	font-family: Lucida Sans Unicode;
 }
 
 #box{
@@ -29,4 +30,22 @@ div.main {
 	height: 200px;
 	background-color: red;
 
+}
+
+button {
+    background-color: #A9F5F2;
+    border: none;
+    color: black;
+    padding: 100px 170px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50px;
+    font-family: Lucida Sans Unicode;
+    margin: 5px;
+    border-radius: 10%;
+}
+
+.active {
+    background-color: #5858FA;
 }

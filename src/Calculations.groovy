@@ -51,4 +51,9 @@ class Calculations {
         }
         return a
     }
+
+    static Integer randomInt(Integer rangeLow, Integer rangeHigh){
+        Random random = new Random()
+        return random.nextInt(rangeHigh+rangeLow)
+    }
 }

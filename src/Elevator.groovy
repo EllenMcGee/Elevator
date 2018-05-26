@@ -1,7 +1,7 @@
 class Elevator {
 
     final Double TRAVEL_TIME_PER_FLOOR = 2.765
-    final Double STOP_TIME_PER_FLOOR = 12
+    final Double STOP_TIME_PER_FLOOR = 8
     boolean currentDirection
     Integer currentFloor
     def stop
