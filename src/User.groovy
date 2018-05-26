@@ -4,6 +4,18 @@ class User {
     Integer currentFloor
     Integer desiredFloor
     Boolean desiredDirection
+
+    User(Integer current, Integer desired){
+        this.currentFloor = current
+        this. desiredFloor = desired
+
+        if (currentFloor < desiredFloor) {
+            desiredDirection = true //up
+        } else {
+            desiredDirection = false //down
+        }
+    }
+
 }
 
 

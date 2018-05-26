@@ -6,10 +6,12 @@ class Elevator {
     Integer currentFloor
     def stop
 
-    Elevator(int numOfStops){
-        stop = new Integer[numOfStops]
+    Elevator(int numOfStops, Boolean currentDirection, Integer currentFloor, def stop){
+        this.stop = stop
+        this.currentDirection = currentDirection
+        this.currentFloor = currentFloor
+        this.stop = stop
     }
-
 
 }
 

@@ -1,21 +1,36 @@
 import groovy.swing.SwingBuilder
 import groovy.beans.Bindable
+import User
+import Elevator
+import Calculations
 
 class MyModel {
-    @Bindable int count = 0
+    @Bindable int floor = 0
+
+    @Bindable User user = new User(6,4)
+    @Bindable int numOfStops = 2
+    @Bindable Elevator elevator = new Elevator(numOfStops,false,4,[3,1])
+    //Calculations calculations = new Calculations(user, elevator)
+
+    //println("${calculations.getElevatorTime(numOfStops).trunc(2)}")
 }
 
 def model = new MyModel()
 new SwingBuilder().edt {
     frame(title: 'Java Frame', size: [800, 600], locationRelativeTo: null, show: true) {
         gridLayout(cols: 3, rows: 2)
-        //label(text: bind(source: model, sourceProperty: 'count', converter: { v ->  v? "Clicked $v times": ''}))
-        button('Floor 1', actionPerformed: { model.count++ })
-        button('Floor 2', actionPerformed: { model.count++ })
-        button('Floor 3', actionPerformed: { model.count++ })
-        button('Floor 4', actionPerformed: { model.count++ })
-        button('Floor 5', actionPerformed: { model.count++ })
-        button('Floor 6', actionPerformed: { model.count++ })
+        //model.user.desiredFloor = model.floor
+        Calculations calculations = new Calculations(model.user, model.elevator)
+        label(text: bind(source: model, sourceProperty: 'floor', converter: { v ->  v? "Time to  $v floor: ${calculations.getElevatorTime(model.numOfStops)}": ''}))
+        button('Floor 1', actionPerformed: { model.floor = 1 })
+        button('Floor 2', actionPerformed: { model.floor = 2 })
+        button('Floor 3', actionPerformed: { model.floor = 3})
+        button('Floor 4', actionPerformed: { model.floor = 4})
+        button('Floor 5', actionPerformed: { model.floor = 5})
+        button('Floor 6', actionPerformed: { model.floor = 6})
     }
+
+
+
 }
 
