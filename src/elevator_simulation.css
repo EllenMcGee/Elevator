@@ -1,0 +1,32 @@
+.TestClass {
+	color: Black;
+	background-color: White;
+	text-align: left;
+}
+
+div.main {
+	border-style: solid;
+	border-width: 1px;
+	height: 200px;
+	width: 300px;
+}
+
+#box{
+	position: absolute;
+	right:800px;
+	top : 0px;
+}
+
+#movable{
+	positon: absolute;
+	left: 500 px;
+	top: 0px;
+}
+
+#move{
+	position: absolute;
+	width: 100px;
+	height: 200px;
+	background-color: red;
+
+}

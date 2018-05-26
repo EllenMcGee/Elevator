@@ -25,6 +25,22 @@ class Calculations {
         time = (distanceBeforePickup * elevator.TRAVEL_TIME_PER_FLOOR) + (numOfStops * elevator.STOP_TIME_PER_FLOOR) + (distanceAfterPickup * elevator.TRAVEL_TIME_PER_FLOOR) + (elevator.STOP_TIME_PER_FLOOR/2)
     }
 
+    Double getStairTime(Integer desiredFloor){
+        Double time = (user.currentFloor - desiredFloor).abs()*user.WALK_TIME_PER_FLOOR
+        return time
+    }
+
+    String fastestRoute(Integer numOfStops, Integer desiredFloor ){
+        Double elevatorTime = getElevatorTime(numOfStops,desiredFloor)
+        Double stairTime = getStairTime(desiredFloor)
+        if (elevatorTime>=stairTime){
+            return "Stairs"
+        }
+        else {
+            return "Elevator"
+        }
+    }
+
     Integer getFurthestFloor() {
         def a = elevator.stop[0]
         for (int i = 0; i < elevator.stop.size(); i++) {
